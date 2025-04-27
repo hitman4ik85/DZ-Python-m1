@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Added Products</title>
+    <link rel="stylesheet" href="{% static 'css/formStyle.css' %}">
+</head>
+<body>
+<div class="form-container">
+    <h2>Phones</h2>
+    {% for product in products %}
+        <div class="product-card">
+        <strong>{{ product.name }}</strong> – ${{ product.price }}<br>
+            {% if product.image_url %}
+                <img src="{{ product.image_url }}" alt="Phone image">
+            {% else %}
+                <em>No image</em>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No products added yet.</p>
+    {% endfor %}
+</div>
+</body>
+</html>

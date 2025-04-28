@@ -46,7 +46,8 @@ def cart(request):
     return render(request, 'cart.html')
 
 def orders(request):
-    return render(request, 'orders.html')
+    products = Product.objects.all()
+    return render(request, 'orders.html', {"products": products})
 
 def admin(request):
     products = Product.objects.all()
@@ -86,6 +87,3 @@ def deleteProduct(request, id):
     except Product.DoesNotExist:
         return HttpResponseNotFound("<h2>Product not found</h2>")
 
-def viewProduct(request):
-    products = Product.objects.all()
-    return render(request, 'viewProduct.html', {'products': products})

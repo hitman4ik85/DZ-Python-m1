@@ -1,6 +1,27 @@
 {% extends 'base.html' %}
-{% block title %}Замовлення{% endblock %}
-{% block header %}Мої замовлення{% endblock %}
+
+{% block title %}Замовлення - IT-Shop{% endblock %}
+
 {% block content %}
-<p>Ви ще не оформлювали замовлення 📦</p>
+<div class="form-container">
+    <h2>Products</h2>
+    {% if products %}
+        <div class="products-grid">
+            {% for product in products %}
+                <div class="product-card">
+                    <strong>{{ product.name }}</strong><br>
+                    {{ product.desc }}<br>
+                    <div class="price">${{ product.price }}</div>
+                    {% if product.image_url %}
+                        <img src="{{ product.image_url }}" alt="Phone image">
+                    {% else %}
+                        <em>No image available</em>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="text-align: center;">No products added yet.</p>
+    {% endif %}
+</div>
 {% endblock %}
